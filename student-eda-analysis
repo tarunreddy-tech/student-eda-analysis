@@ -1,0 +1,40 @@
+# Exploratory Data Analysis (EDA) Project
+
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Dataset
+data = {
+    'Gender': ['Male','Female','Female','Male','Male','Female','Male','Female'],
+    'Math': [78, 85, 96, 65, 70, 88, 90, 60],
+    'Science': [82, 79, 94, 70, 68, 85, 92, 66],
+    'English': [75, 80, 91, 60, 72, 86, 89, 64],
+    'Hours_Studied': [3, 4, 6, 2, 3, 5, 6, 2],
+    'Attendance': [85, 90, 95, 70, 75, 88, 93, 72]
+}
+
+student_df = pd.DataFrame(data)
+
+print(student_df.head())
+
+# Add new columns
+student_df['Average'] = student_df[['Math','Science','English']].mean(axis=1)
+
+# Visualization
+sns.set()
+
+plt.figure()
+sns.scatterplot(x='Hours_Studied', y='Average', data=student_df)
+plt.title("Study Hours vs Performance")
+plt.show()
+
+# Correlation
+plt.figure()
+sns.heatmap(student_df.corr(numeric_only=True), annot=True)
+plt.title("Correlation Matrix")
+plt.show()
+
+print("EDA Completed Successfully")
+
+Added EDA project code
